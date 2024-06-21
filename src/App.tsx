@@ -85,7 +85,7 @@ export default function App() {
                     Use our AI Agents to generate a personalised newsletter based on the sources you're interested in 📬
                   </p>
                 </div>
-                <form action="#" className="mt-12 flex justify-center">
+                <form action="#" className="mt-12 flex justify-center flex-col sm:flex-row">
                   <div className="min-w-0 flex-1">
                     <label htmlFor="hero-email" className="sr-only">
                       Email address
