@@ -1,6 +1,7 @@
 import './App.css'
 import { ChevronRightIcon, StarIcon } from '@heroicons/react/20/solid'
 import ExplainRedact from "./assets/explain-redact.jpg"
+import ExplainRedactMobile from "./assets/explain-redact-mobile.jpg"
 
 const stats = [
   { label: 'Emails sent', value: '100+' },
@@ -131,10 +132,15 @@ export default function App() {
           <div className="lg:mx-auto lg:max-w-7xl lg:items-start lg:px-8">
             <div className="relative sm:py-16 lg:py-0">
               <div className="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:max-w-none lg:px-0 lg:pb-20">
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="relative overflow-hidden rounded-2xl py-10">
                   <img
-                    className="max-h-[50rem] w-auto mx-auto"
+                    className="max-h-[50rem] w-auto mx-auto md:block hidden"
                     src={ExplainRedact}
+                    alt=""
+                  />
+                  <img
+                    className="max-h-[50rem] w-auto mx-auto md:hidden"
+                    src={ExplainRedactMobile}
                     alt=""
                   />
                 </div>
@@ -144,7 +150,7 @@ export default function App() {
             <div className="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:px-0">
               {/* Content area */}
               <div>
-                <h2 className="text-left text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl pb-10">
+                <h2 className="text-left text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl pb-4">
                   A simple idea for your media consumption 💡
                 </h2>
                 <div className="mt-6 space-y-6 text-gray-500 text-left">
