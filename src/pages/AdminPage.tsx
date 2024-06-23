@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-const base_url = import.meta.env.REACT_APP_ENV === 'prod' ? 'https://api.redact.lofipapers.com' : 'http://127.0.0.1:8000';
+const base_url = import.meta.env.VITE_API_URL
 
 const AdminPage = () => {
   const [emailId, setEmailId] = useState('');
