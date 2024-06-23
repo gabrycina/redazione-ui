@@ -57,8 +57,8 @@ export default function App() {
   return (
     <div className="bg-white">
       <main>
-        <div className="flex justify-start mx-2">
-          <h1 className='text-2xl'>
+        <div className="flex justify-start">
+          <h1 className='text-2xl ml-10 mt-10'>
             Redact
           </h1>
         </div>
@@ -190,7 +190,7 @@ export default function App() {
                 </dl>
                 <div className="mt-10">
                   <a href="#" className="text-base font-medium text-rose-500">
-                    Learn more about how we're changing the world &rarr;
+                    Join the alpha &rarr;
                   </a>
                 </div>
               </div>
