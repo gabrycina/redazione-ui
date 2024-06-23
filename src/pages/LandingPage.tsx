@@ -314,6 +314,7 @@ const LandingPage = () => {
                 <div className="mt-4 sm:mt-0 sm:ml-3">
                   <button
                     type="submit"
+                    onClick={handleSubmit}
                     className="block w-full rounded-md border border-transparent bg-gray-900 px-5 py-3 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500 sm:px-10"
                   >
                     Request demo
