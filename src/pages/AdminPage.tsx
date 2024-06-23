@@ -45,7 +45,7 @@ const AdminPage = () => {
 
   const handleRegisterUser = async () => {
     try {
-      const res = await axios.post<EmailResponse>('http://127.0.0.1:8000/register', { email: registerEmail });
+      const res = await axios.post<EmailResponse>('http://127.0.0.1:8000/users', { email: registerEmail });
       setResponse(res.data);
     } catch (error) {
       console.error('Error registering user:', error);
