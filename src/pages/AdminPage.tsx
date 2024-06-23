@@ -104,7 +104,7 @@ const AdminPage = () => {
             <Button onClick={handleSendEmail} className="ml-4 mt-1">Send Email</Button>
           </div>
           
-          <Label>Register Email:</Label>
+          <Label>Add User:</Label>
           <div className="mb-10 flex">
             <Input
               value={registerEmail}
@@ -112,7 +112,7 @@ const AdminPage = () => {
               className="mt-1"
               placeholder='example@email.com'
             />
-            <Button onClick={handleRegisterUser} className="mt-1 ml-4">Register New User</Button>
+            <Button onClick={handleRegisterUser} className="mt-1 ml-4">Register</Button>
           </div>
 
           <CardTitle className='mb-4'>Edit User</CardTitle>
