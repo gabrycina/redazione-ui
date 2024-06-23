@@ -15,6 +15,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+const base_url = import.meta.env.REACT_APP_ENV === 'prod' ? 'https://api.redact.lofipapers.com' : 'http://127.0.0.1:8000';
+
 const AdminPage = () => {
   const [emailId, setEmailId] = useState('');
   const [userId, setUserId] = useState('');
@@ -22,10 +24,11 @@ const AdminPage = () => {
   const [sources, setSources] = useState<string[]>(['']);
   const [registerEmail, setRegisterEmail] = useState('');
   const [response, setResponse] = useState<EmailResponse | User[] | ErrorResponse | null>(null);
+  const [deleteUserId, setDeleteUserId] = useState('')
 
   const handleSendEmail = async () => {
     try {
-      const res = await axios.get<EmailResponse>(`http://127.0.0.1:8000/send_email/${emailId}`);
+      const res = await axios.get<EmailResponse>(`${base_url}/send_email/${emailId}`);
       setResponse(res.data);
     } catch (error) {
       console.error('Error sending email:', error);
@@ -35,7 +38,7 @@ const AdminPage = () => {
 
   const handleGetUsers = async () => {
     try {
-      const res = await axios.get<User[]>('http://127.0.0.1:8000/users');
+      const res = await axios.get<User[]>(`${base_url}/users`);
       setResponse(res.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -45,7 +48,7 @@ const AdminPage = () => {
 
   const handleRegisterUser = async () => {
     try {
-      const res = await axios.post<EmailResponse>('http://127.0.0.1:8000/users', { email: registerEmail });
+      const res = await axios.post<EmailResponse>(`${base_url}/users`, { email: registerEmail });
       setResponse(res.data);
     } catch (error) {
       console.error('Error registering user:', error);
@@ -56,7 +59,7 @@ const AdminPage = () => {
   const handleUpdateUser = async () => {
     const nonEmptySources = sources.filter(source => source.trim() !== '');
     try {
-      const res = await axios.put<EmailResponse>(`http://127.0.0.1:8000/users/${userId}`, {
+      const res = await axios.put<EmailResponse>(`${base_url}/users/${userId}`, {
         drafter_prompt: drafterPrompt,
         sources: nonEmptySources.join('|')
       });
@@ -64,6 +67,16 @@ const AdminPage = () => {
     } catch (error) {
       console.error('Error updating user:', error);
       setResponse({ error: 'Error updating user' });
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      const res = await axios.delete<EmailResponse>(`${base_url}/users/${deleteUserId}`);
+      setResponse(res.data);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      setResponse({ error: 'Error deleting user' });
     }
   };
 
@@ -149,6 +162,18 @@ const AdminPage = () => {
               Update User
             </Button>
           </div>
+        </CardContent>
+        <CardContent>
+          <Label>Delete user:</Label>
+          <Input
+            value={deleteUserId}
+            onChange={(e) => setDeleteUserId(e.target.value)}
+            className="mt-3"
+            placeholder='ID'
+          />
+          <Button onClick={handleDeleteUser} className="mt-4 bg-red-500 text-white">
+            Delete User
+          </Button>
         </CardContent>
         <CardFooter>
           {response && (
