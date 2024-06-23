@@ -1,6 +1,9 @@
 import { ChevronRightIcon, StarIcon } from '@heroicons/react/20/solid'
 import ExplainRedact from "../assets/explain-redact.jpg"
 import ExplainRedactMobile from "../assets/explain-redact-mobile.jpg"
+import { Toaster, toast } from 'sonner'
+import { useState } from 'react'
+import axios from 'axios'
 
 const stats = [
   { label: 'Emails sent', value: '100+' },
@@ -52,10 +55,25 @@ const logos = [
   },
 ]
 
+
 const LandingPage = () => {
+  const [registerEmail, setRegisterEmail] = useState('');
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: registerEmail });
+      toast.success("We'll contact you soon 🚀")
+      setRegisterEmail('');
+    } catch (error) {
+      console.error('Error requesting demo:', error);
+    }
+  };
+
   return (
     <div className="bg-white">
     <main>
+      <Toaster position="bottom-right" richColors />
       <div className="flex justify-start">
         <h1 className='text-2xl ml-10 mt-10'>
           Redact
@@ -93,6 +111,8 @@ const LandingPage = () => {
                   <input
                     id="hero-email"
                     type="email"
+                    value={registerEmail}
+                    onChange={(e) => setRegisterEmail(e.target.value)}
                     className="block w-full rounded-md border border-gray-300 px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-rose-500 focus:ring-rose-500"
                     placeholder="Enter your email"
                   />
@@ -100,6 +120,7 @@ const LandingPage = () => {
                 <div className="mt-4 sm:mt-0 sm:ml-3">
                   <button
                     type="submit"
+                    onClick={handleSubmit}
                     className="block w-full rounded-md border border-transparent bg-rose-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:px-10"
                   >
                     Request Demo
@@ -284,6 +305,8 @@ const LandingPage = () => {
                   <input
                     id="cta-email"
                     type="email"
+                    value={registerEmail}
+                    onChange={(e) => setRegisterEmail(e.target.value)}
                     className="block w-full rounded-md border border-transparent px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500"
                     placeholder="Enter your email"
                   />
