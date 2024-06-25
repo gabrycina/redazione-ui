@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable/";
     devenv.url = "github:cachix/devenv";
-    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs @ {
@@ -14,7 +13,6 @@
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [inputs.devenv.flakeModule];
       perSystem = {
-        inputs',
         pkgs,
         lib,
         ...
@@ -36,26 +34,19 @@
 
           buildPhase = ''
             runHook preBuild
-
             pnpm build
-
             runHook postBuild
           '';
 
           installPhase = ''
             runHook preInstall
-
             cp -r dist/ $out
-
             runHook postInstall
           '';
         });
         devenv.shells.default = {
           containers = lib.mkForce {};
-          packages = [
-            inputs'.agenix.packages.default
-            pkgs.deploy-rs
-          ];
+          packages = [];
         };
       };
     };
