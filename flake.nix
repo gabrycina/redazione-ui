@@ -6,7 +6,6 @@
   };
 
   outputs = inputs @ {
-    self,
     nixpkgs,
     flake-parts,
     ...
@@ -22,9 +21,8 @@
       }: {
         packages.default = pkgs.stdenv.mkDerivation (finalAttrs: {
           pname = "redazione-ui";
-          src = ./.;
+          src = lib.cleanSource ./.;
           version = "0.0.0";
-          sourceRoot = finalAttrs.src;
 
           nativeBuildInputs = [
             pkgs.nodejs
@@ -32,8 +30,8 @@
           ];
 
           pnpmDeps = pkgs.pnpm_9.fetchDeps {
-            inherit (finalAttrs) pname version src sourceRoot;
-            hash = "sha256-awQgOLkb46v2aWfw6yv+zGPoOnczalkzg02tBgMTyMY=";
+            inherit (finalAttrs) pname version src;
+            hash = "sha256-ZjGmbGNd8jnEQglMg5Q98vj7pHyLaytdCcnvjvVg3w8=";
           };
 
           buildPhase = ''
