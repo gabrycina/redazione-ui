@@ -26,3 +26,6 @@ dist-ssr
 .env.development
 .env.production
 .DS_Store
+
+.devenv
+.direnv
