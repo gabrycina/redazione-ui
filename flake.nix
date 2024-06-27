@@ -11,11 +11,10 @@
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = nixpkgs.lib.systems.flakeExposed;
-      imports = [inputs.devenv.flakeModule inputs.flake-parts.flakeModules.easyOverlay];
+      imports = [inputs.devenv.flakeModule];
       perSystem = {
         pkgs,
         lib,
-        config,
         ...
       }: let
         app = pkgs.stdenv.mkDerivation (finalAttrs: {
@@ -46,11 +45,7 @@
           '';
         });
       in {
-        overlayAttrs = {
-          inherit (config.packages) redazione-ui;
-        };
         packages.default = app;
-        packages.redazione-ui = app;
         devenv.shells.default = {
           containers = lib.mkForce {};
           packages = [];
