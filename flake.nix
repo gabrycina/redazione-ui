@@ -17,11 +17,8 @@
         lib,
         config,
         ...
-      }: {
-        overlayAttrs = {
-          inherit (config.packages) default;
-        };
-        packages.default = pkgs.stdenv.mkDerivation (finalAttrs: {
+      }: let
+        app = pkgs.stdenv.mkDerivation (finalAttrs: {
           pname = "redazione-ui";
           src = lib.cleanSource ./.;
           version = "0.0.0";
@@ -48,6 +45,12 @@
             runHook postInstall
           '';
         });
+      in {
+        overlayAttrs = {
+          inherit (config.packages) redazione-ui;
+        };
+        packages.default = app;
+        packages.redazione-ui = app;
         devenv.shells.default = {
           containers = lib.mkForce {};
           packages = [];
