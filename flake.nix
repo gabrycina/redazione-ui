@@ -11,12 +11,16 @@
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = nixpkgs.lib.systems.flakeExposed;
-      imports = [inputs.devenv.flakeModule];
+      imports = [inputs.devenv.flakeModule inputs.flake-parts.flakeModules.easyOverlay];
       perSystem = {
         pkgs,
         lib,
+        config,
         ...
       }: {
+        overlayAttrs = {
+          inherit (config.packages) default;
+        };
         packages.default = pkgs.stdenv.mkDerivation (finalAttrs: {
           pname = "redazione-ui";
           src = lib.cleanSource ./.;
