@@ -5,8 +5,6 @@ import { Toaster, toast } from 'sonner'
 import { useState } from 'react'
 import axios from 'axios'
 import { usePostHog } from 'posthog-js/react'
-import { useEffect } from 'react'
-import { useUser, useLogin } from '../lib/user'
 
 const stats = [
   { label: 'Emails sent', value: '100+' },
