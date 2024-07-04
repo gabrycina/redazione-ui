@@ -70,7 +70,7 @@ const LandingPage = () => {
 
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: registerEmail });
-      toast.success("We'll contact you soon 🚀")
+      toast.success("Account activation email sent! Please check your email to activate your account. 🚀")
       setRegisterEmail('');
 
       requestDemoClicked()
@@ -133,7 +133,7 @@ const LandingPage = () => {
                       onClick={handleSubmit}
                       className="block w-full rounded-md border border-transparent bg-rose-500 px-5 py-3 text-base font-medium text-white shadow hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:px-10"
                     >
-                      Request Demo
+                      Join the alpha
                     </button>
                   </div>
                 </form>
@@ -241,7 +241,7 @@ const LandingPage = () => {
                 </p>
                 <div className="mt-6">
                   <a href="#" className="text-base font-medium text-rose-500">
-                    Ask for a b2b demo &rarr;
+                    Ask for a b2b offer &rarr;
                   </a>
                 </div>
               </div>
@@ -301,7 +301,7 @@ const LandingPage = () => {
               <div className="relative">
                 <div className="sm:text-center">
                   <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Start today requesting a demo
+                    Start today joining the alpha
                   </h2>
                   <p className="mx-auto mt-6 max-w-2xl text-lg text-rose-100">
                     Insert your email and our agent will guide you through the process of starting using our alpha for Redact
@@ -327,7 +327,7 @@ const LandingPage = () => {
                       onClick={handleSubmit}
                       className="block w-full rounded-md border border-transparent bg-gray-900 px-5 py-3 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500 sm:px-10"
                     >
-                      Request demo
+                      Join the alpha
                     </button>
                   </div>
                 </form>
