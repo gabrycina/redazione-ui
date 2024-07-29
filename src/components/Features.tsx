@@ -1,21 +1,5 @@
 import { HowItWorks } from "./HowItWorks";
 import { Badge } from "./ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-interface FeatureProps {
-  title: string;
-  description: string;
-  image: string;
-}
-
-const features: FeatureProps[] = [
-];
 
 const featureList: string[] = [
   "Time saving",
