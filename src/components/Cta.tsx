@@ -1,11 +1,8 @@
+import { FormEventHandler } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export const Cta = () => {
-  const handleSubmit = () => {
-
-  }
-
+export const Cta = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
   return (
     <section
       id="cta"
@@ -47,7 +44,7 @@ export const Cta = () => {
         <div className="mt-4 text-center max-w-md pt-4">
           <form
             className="flex flex-col w-full md:flex-row mx-auto gap-4"
-            onSubmit={handleSubmit}
+            onSubmit={handleSignUp}
           >
             <Input
               placeholder="yourbest@email.com"
@@ -59,7 +56,9 @@ export const Cta = () => {
 
           <div className="mt-4 text-left">
             Are you a company? {" "}
-            <a className="underline mt-10" href="/forcompanies">
+            <a className="underline mt-10" href="https://tally.so/r/woOJY1"
+              target="_blank"
+            >
               Contact Us!
             </a>
           </div>

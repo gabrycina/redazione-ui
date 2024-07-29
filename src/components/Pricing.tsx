@@ -9,6 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { FormEventHandler } from "react";
+import { usePostHog } from "posthog-js/react";
 
 enum PopularPlanType {
   NO = 0,
@@ -22,53 +24,73 @@ interface PricingProps {
   description: string;
   buttonText: string;
   benefitList: string[];
+  action: FormEventHandler
 }
 
-const pricingList: PricingProps[] = [
-  {
-    title: "Free",
-    popular: 0,
-    price: 0,
-    description:
-      "A free plan with all you need to boost your daily reading",
-    buttonText: "Get Started",
-    benefitList: [
-      "5 websites of your choice",
-      "Max 10 articles/day",
-      "Specify your preferences",
-    ],
-  },
-  {
-    title: "Premium",
-    popular: 1,
-    price: 9.99,
-    description:
-      "We'll give you love and everything we have",
-    buttonText: "Get Started",
-    benefitList: [
-      "Unlimited websites of your choice",
-      "Unlimited articles/day",
-      "Daily podcast version",
-      "Custom sending time"
-    ],
-  },
-  {
-    title: "Company",
-    popular: 0,
-    price: -1,
-    description:
-      "Adapted to each company internal needs (with love)",
-    buttonText: "Contact US",
-    benefitList: [
-      "Internal newsletter integration",
-      "API access",
-      "Unlimited usage",
-      "Whitelabeling"
-    ],
-  },
-];
+const handleClick = (targetId: string) => {
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
 
 export const Pricing = () => {
+  const posthog = usePostHog()
+
+  const pricingList: PricingProps[] = [
+    {
+      title: "Free",
+      popular: 0,
+      price: 0,
+      description:
+        "A free plan with all you need to boost your daily reading",
+      buttonText: "Get Started",
+      benefitList: [
+        "5 websites of your choice",
+        "Max 10 articles/day",
+        "Specify your preferences",
+      ],
+      action: () => {
+        handleClick("hero")
+        posthog?.capture('free_sign_up_clicked')
+      }
+    },
+    {
+      title: "Premium",
+      popular: 1,
+      price: 9.99,
+      description:
+        "We'll give you love and everything we have",
+      buttonText: "Get Started",
+      benefitList: [
+        "Unlimited websites of your choice",
+        "Unlimited articles/day",
+        "Daily podcast version",
+        "Custom sending time"
+      ],
+      action: () => {
+        handleClick("hero")
+        posthog?.capture('paid_sign_up_clicked')
+      }
+    },
+    {
+      title: "Company",
+      popular: 0,
+      price: -1,
+      description:
+        "Adapted to each company internal needs (with love)",
+      buttonText: "Contact US",
+      benefitList: [
+        "Internal newsletter integration",
+        "API access",
+        "Unlimited usage",
+        "Whitelabeling"
+      ],
+      action: () => window.open("https://tally.so/r/woOJY1", '_blank', 'noopener,noreferrer')
+    },
+  ];
+
   return (
     <section
       id="pricing"
@@ -126,7 +148,7 @@ export const Pricing = () => {
             </CardHeader>
 
             <CardContent>
-              <Button className="w-full">{pricing.buttonText}</Button>
+              <Button onClick={pricing.action} className="w-full">{pricing.buttonText}</Button>
             </CardContent>
 
             <hr className="w-4/5 m-auto mb-4" />

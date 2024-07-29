@@ -1,12 +1,8 @@
+import { FormEventHandler } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export const Signup = () => {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Subscribed!");
-  };
-
+export const Signup = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
   return (
     <section id="newsletter">
       <hr className="w-11/12 mx-auto" />
@@ -24,7 +20,7 @@ export const Signup = () => {
 
         <form
           className="flex flex-col w-full md:flex-row md:w-6/12 lg:w-4/12 mx-auto gap-4 md:gap-2"
-          onSubmit={handleSubmit}
+          onSubmit={handleSignUp}
         >
           <Input
             placeholder="leomirandadev@gmail.com"

@@ -1,14 +1,10 @@
+import { FormEventHandler } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export const Hero = () => {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Subscribed!");
-  };
-
+export const Hero = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
   return (
-    <section className="container place-items-center py-32 mx-auto">
+    <section id="hero" className="container place-items-center py-32 mx-auto">
       <div className="text-center space-y-6">
         <main className="text-5xl md:text-6xl font-bold">
           <h1 className="inline">
@@ -27,7 +23,7 @@ export const Hero = () => {
         <div className="space-y-4 md:space-y-0 md:space-x-4">
           <form
             className="flex flex-col w-full md:flex-row md:w-6/12 lg:w-4/12 mx-auto gap-4 md:gap-2"
-            onSubmit={handleSubmit}
+            onSubmit={handleSignUp}
           >
             <Input
               placeholder="yourbest@email.com"
@@ -40,7 +36,7 @@ export const Hero = () => {
 
         <div>
           Are you a company? {" "}
-          <a className="underline mt-10" href="/forcompanies">
+          <a className="underline mt-10" href="https://tally.so/r/woOJY1" target="_blank">
             Contact Us!
           </a>
         </div>
