@@ -2,7 +2,7 @@ import { FormEventHandler } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export const Hero = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
+export const Hero = ({ handleSignUp, registerEmail, setRegisterEmail }: { handleSignUp: FormEventHandler, registerEmail: string, setRegisterEmail: Function }) => {
   return (
     <section id="hero" className="container place-items-center py-32 mx-auto">
       <div className="text-center space-y-6">
@@ -29,6 +29,8 @@ export const Hero = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
               placeholder="yourbest@email.com"
               className="bg-muted/50 dark:bg-muted/80 "
               aria-label="email"
+              value={registerEmail}
+              onChange={(e) => setRegisterEmail(e.target.value)}
             />
             <Button>Sign me up</Button>
           </form>

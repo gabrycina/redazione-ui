@@ -2,7 +2,7 @@ import { FormEventHandler } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export const Cta = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
+export const Cta = ({ handleSignUp, registerEmail, setRegisterEmail }: { handleSignUp: FormEventHandler, registerEmail: string, setRegisterEmail: Function }) => {
   return (
     <section
       id="cta"
@@ -50,6 +50,8 @@ export const Cta = ({ handleSignUp }: { handleSignUp: FormEventHandler }) => {
               placeholder="yourbest@email.com"
               className="bg-muted/50 dark:bg-muted/80 "
               aria-label="email"
+              value={registerEmail}
+              onChange={(e) => setRegisterEmail(e.target.value)}
             />
             <Button>Sign me up</Button>
           </form>
