@@ -26,7 +26,7 @@ const routeList: RouteProps[] = [
     label: "How it works",
   },
   {
-    href: "#forcompanies",
+    href: "https://tally.so/r/woOJY1",
     label: "For Companies",
   },
   {
